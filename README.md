@@ -12,7 +12,7 @@ This project implements a TypeScript function named modThree that calculates the
 First, clone this repository to your local machine. Then, navigate to the project directory and install the dependencies.
 
 ``` bash
-git clone https://github.com:kamiunix/modthree.git
+git clone https://github.com/kamiunix/modthree.git
 cd modthree
 npm install
 ```
@@ -21,7 +21,7 @@ Or, if you are using yarn:
 
 ```bash
 
-git clone https://github.com:kamiunix/modthree.git 
+git clone https://github.com/kamiunix/modthree.git
 cd modthree
 yarn install
 ```
