@@ -59,7 +59,20 @@ class FiniteAutomaton {
                 throw new Error(`Next state ${nextState} not in set of states`);
             }
         });
-    }
+
+        // throw error if it is a non-deterministic finite automaton (NFA), i.e. if there are multiple transitions from the same state on the same input
+        const transitionFunction = new Map();
+        transitions.forEach(([state, input, nextState]) => {
+            if (!transitionFunction.has(state)) {
+                transitionFunction.set(state, new Map());
+            }
+            if (transitionFunction.get(state)!.has(input)) {
+                throw new Error(`Non-deterministic finite automaton (NFA) detected: multiple transitions from state ${state} on input ${input}`);
+            }
+            transitionFunction.get(state)!.set(input, nextState);
+            console.log('transitionFunction: ', transitionFunction);
+        });
+     }
 
     processInput(input: string): string | undefined {
         let currentState = this.initialState;

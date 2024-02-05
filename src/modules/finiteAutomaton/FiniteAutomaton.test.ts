@@ -44,7 +44,14 @@ describe('FiniteAutomaton construction', () => {
                 ['0', '1'],
                 'S0',
                 ['S0', 'S1', 'S2'],
-                [['S0', '0', 'S0'], ['S0', '1', 'S1'], ['S1', '0', 'S2'], ['S1', '1', 'S0'], ['S2', '0', 'S1'], ['S2', '1', 'S3']]
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '1', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S2', '1', 'S3']
+                ]
             );
         }).toThrow('Next state S3 not in set of states');
     });
@@ -56,7 +63,14 @@ describe('FiniteAutomaton construction', () => {
                 ['0', '1'],
                 'S0',
                 ['S0', 'S1', 'S2'],
-                [['S0', '0', 'S0'], ['S0', '2', 'S1'], ['S1', '0', 'S2'], ['S1', '1', 'S0'], ['S2', '0', 'S1'], ['S2', '1', 'S2']]
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '2', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S2', '1', 'S2']
+                ]
             );
         }).toThrow('Input symbol 2 not in alphabet');
     });
@@ -68,7 +82,14 @@ describe('FiniteAutomaton construction', () => {
                 ['0', '1'],
                 'S0',
                 ['S0', 'S1', 'S2'],
-                [['S0', '0', 'S0'], ['S0', '1', 'S1'], ['S1', '0', 'S2'], ['S1', '1', 'S0'], ['S2', '0', 'S1'], ['S3', '1', 'S2']]
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '1', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S3', '1', 'S2']
+                ]
             );
         }).toThrow('State S3 not in set of states');
     });
@@ -80,7 +101,14 @@ describe('FiniteAutomaton construction', () => {
                 ['0', '1'],
                 'S3',
                 ['S0', 'S1', 'S2'],
-                [['S0', '0', 'S0'], ['S0', '1', 'S1'], ['S1', '0', 'S2'], ['S1', '1', 'S0'], ['S2', '0', 'S1'], ['S2', '1', 'S2']]
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '1', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S2', '1', 'S2']
+                ]
             );
         }).toThrow('Initial state S3 not in set of states');
     });
@@ -92,8 +120,34 @@ describe('FiniteAutomaton construction', () => {
                 ['0', '1'],
                 'S0',
                 ['S0', 'S1', 'S3'],
-                [['S0', '0', 'S0'], ['S0', '1', 'S1'], ['S1', '0', 'S2'], ['S1', '1', 'S0'], ['S2', '0', 'S1'], ['S2', '1', 'S2']]
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '1', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S2', '1', 'S2']
+                ]
             );
         }).toThrow('Final state S3 not in set of states');
+    });
+
+    test('should throw an error if the finite automaton is non-deterministic', () => {
+        expect(() => {
+            new FiniteAutomaton(
+                ['S0', 'S1', 'S2'],
+                ['0', '1'],
+                'S0',
+                ['S0', 'S1', 'S2'],
+                [
+                    ['S0', '0', 'S0'],
+                    ['S0', '0', 'S1'],
+                    ['S1', '0', 'S2'],
+                    ['S1', '1', 'S0'],
+                    ['S2', '0', 'S1'],
+                    ['S2', '1', 'S2']
+                ]
+            );
+        }).toThrow('Non-deterministic finite automaton (NFA) detected: multiple transitions from state S0 on input 0');
     });
 });
