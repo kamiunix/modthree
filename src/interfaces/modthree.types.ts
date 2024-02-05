@@ -1,16 +1,16 @@
-// Define the state transition table
-// stateTransition[currentState][inputBit]
-const stateTransition: Record<string, Record<string, string>> = {
-    'S0': {'0': 'S0', '1': 'S1'},
-    'S1': {'0': 'S2', '1': 'S0'},
-    'S2': {'0': 'S1', '1': 'S2'}
-};
+const states = ['S0', 'S1', 'S2'];
+const alphabet = ['0', '1'];
+const initialState = 'S0';
+const finalStates = ['S0', 'S1', 'S2'];
+const transitions: [string, string, string][] =
+[
+    ['S0', '0', 'S0'],
+    ['S0', '1', 'S1'],
+    ['S1', '0', 'S2'],
+    ['S1', '1', 'S0'],
+    ['S2', '0', 'S1'],
+    ['S2', '1', 'S2']
+];
 
-// return values given the current state
-const stateReturn: Record<string, number> = {
-    'S0': 0,
-    'S1': 1,
-    'S2': 2
-};
 
-export { stateTransition, stateReturn};
+export { states, alphabet, initialState, finalStates, transitions };

@@ -1,22 +1,20 @@
-import { stateTransition, stateReturn} from '../interfaces/modthree.types';
+import { FiniteAutomaton } from '../modules/finiteAutomaton/FiniteAutomaton';
+import { states, finalStates, initialState, transitions, alphabet } from '../interfaces/modthree.types';
+
 function modThree(input: string): number {
-    // Initial state
-    let currentState = 'S0';
+    const modThreeFA = new FiniteAutomaton(
+        states,
+        alphabet,
+        initialState,
+        finalStates,
+        transitions
+    );
 
-    // Process each bit from the input
-    for (const bit of input) {
-        currentState = stateTransition[currentState][bit];
-    }
+    const finalState = modThreeFA.processInput(input);
 
-    // Return the remainder based on the final state
-    const result: number = stateReturn[currentState];
-
-    // handle invalid final states
-    if (result === undefined) {
-        throw new Error('Invalid final state');
-    }
-
-    return result;
+    return finalStates.indexOf(finalState!);
 }
+
+
 
 export { modThree };

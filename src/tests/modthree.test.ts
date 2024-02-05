@@ -65,11 +65,11 @@ describe('modThree function', () => {
 
     // invalid input tests
     test('should throw an error for invalid non binary representation input', () => {
-        expect(() => modThree("1102")).toThrow('Invalid final state');
+        expect(() => modThree("1102")).toThrow('Invalid input symbol: 2');
     });
 
     test('should throw an error for invalid character string input', () => {
-        expect(() => modThree("110a")).toThrow('Invalid final state');
+        expect(() => modThree("110a")).toThrow('Invalid input symbol: a');
     });
 
 });
